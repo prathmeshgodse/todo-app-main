@@ -1,0 +1,228 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ### Primary */
+  --bright-blue: hsl(220, 98%, 61%);
+  --check-mark-background: linear-gradient(
+    135deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  /* ### Light Theme */
+  --very-light-gray: hsl(0, 0%, 98%);
+  --very-light-grayish-blue: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+
+  /* ### Dark Theme */
+  --very-dark-blue: hsl(235, 21%, 11%);
+  --Very-dark-desaturated-blue: hsl(235, 24%, 19%);
+  --light-grayish-blue: hsl(234, 39%, 85%);
+  --light-grayish-blue-hover: hsl(236, 33%, 92%);
+  --dark-grayish-blue: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue: hsl(233, 14%, 35%);
+  --very-dark-grayish-blue-two: hsl(237, 14%, 26%);
+
+  --font-family: "Josefin Sans";
+}
+
+.attribution {
+  font-size: 11px;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+body {
+  font-size: 18px;
+  font-family: "Josefin Sans", sans-serif;
+  background-color: var(--very-dark-blue);
+  background-image: url(images/bg-desktop-dark.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.container {
+  width: 35%;
+  margin: 5% auto;
+}
+
+/* heading */
+
+.header {
+  display: flex;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+}
+
+.heading-name {
+  flex-grow: 1;
+  color: white;
+  letter-spacing: 0.8ch;
+}
+
+/* New Task */
+
+.new-task-container {
+  width: 100%;
+  background-color: var(--very-dark-grayish-blue-two); /*might need to change*/
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  box-shadow: 0 15px 30px -13px black;
+}
+
+.check-box-border {
+  position: relative;
+  min-height: 1.3rem;
+  min-width: 1.3rem;
+  background-color: var(--dark-grayish-blue);
+  border-radius: 50%;
+}
+
+.check-box-border:hover {
+  cursor: pointer;
+  background-image: var(--check-mark-background);
+}
+
+.new-task-check-box {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid var(--very-dark-grayish-blue);
+}
+
+.check-box {
+  position: absolute;
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: var(--very-dark-grayish-blue-two);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.check-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.new-task-text {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--light-grayish-blue);
+  font-family: var(--font-family);
+  background-color: transparent;
+}
+
+.task-container {
+  flex-grow: 1;
+  margin: 0 1rem;
+}
+
+.new-task-text,
+.new-task-text:focus {
+  border: none;
+  outline: none;
+}
+
+.btn-remove-item {
+  background-color: transparent;
+  border: none;
+  visibility: hidden;
+}
+
+.btn-remove-item:hover {
+  cursor: pointer;
+}
+
+/* Task List */
+
+.task-list-section {
+  border-radius: 5px;
+  background-color: var(--very-dark-grayish-blue-two);
+  margin-bottom: 3rem;
+  box-shadow: 0 20px 30px -13px black;
+}
+
+.task-item {
+  color: var(--light-grayish-blue);
+  display: flex;
+  padding: 1rem;
+  font-size: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  border-bottom: 1px solid var(--very-dark-grayish-blue);
+  flex-grow: 5;
+}
+
+.task-item:hover .btn-remove-item {
+  visibility: visible;
+}
+
+.task:hover {
+  cursor: pointer;
+}
+
+/* Task Summary */
+
+.task-utilities {
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  color: var(--dark-grayish-blue);
+  font-weight: 700;
+  align-items: center;
+}
+
+.task-states-container {
+  font-size: 0.9rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  max-width: 50%;
+}
+
+.active-state {
+  color: var(--bright-blue);
+}
+
+.task-state:hover,
+.clear-tasks:hover {
+  cursor: pointer;
+  color: var(--light-grayish-blue-hover);
+}
+
+/*Footer*/
+
+.info {
+  color: var(--dark-grayish-blue);
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+/* Media Queries */

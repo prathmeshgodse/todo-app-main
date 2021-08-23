@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Frontend Mentor | Todo app</title>
+  </head>
+  <body>
+    <div class="container" role="main">
+      <header class="header" role="heading">
+        <h1 class="heading-name">TODO</h1>
+        <div class="dark-light-mode-switch">
+          <img
+            src="images/icon-sun.svg"
+            class="light-mode-switch"
+            alt="Light Mode"
+          />
+        </div>
+      </header>
+      <section class="new-task-section">
+        <div class="new-task-container">
+          <div class="new-task-check-box"></div>
+          <input
+            type="text"
+            class="new-task-text task-text"
+            name="New TODO Item"
+            placeholder="Create a new todo..."
+          />
+        </div>
+      </section>
+      <section class="task-list-section" role="listbox">
+        <div class="task-list-container">
+          <ul class="task-list">
+            <li class="task-item">
+              <div class="check-box-border">
+                <div class="check-box">
+                  <img class="check-mark" src="images/icon-check.svg" alt="" />
+                </div>
+              </div>
+              <div class="task-container">
+                <p class="task">
+                  Lorem ipsum dolor sit amet consectetur adipisicing.
+                </p>
+              </div>
+              <div class="remove-item-container">
+                <button class="btn-remove-item">
+                  <img src="images/icon-cross.svg" alt="Remove Item" />
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="task-utilities" role="toolbar">
+          <div class="task-summary">
+            <p>0 items left</p>
+          </div>
+          <div class="task-states-container" role="status">
+            <div class="task-state state-all">
+              <p>All</p>
+            </div>
+            <div class="task-state state-active">
+              <p>Active</p>
+            </div>
+            <div class="task-state state-completed">
+              <p>Completed</p>
+            </div>
+          </div>
+          <div class="clear-tasks">
+            <p>Clear Completed</p>
+          </div>
+        </div>
+      </section>
+      <section class="info" role="text">
+        <p>Drag and drop to reorder list</p>
+      </section>
+    </div>
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </body>
+</html>
