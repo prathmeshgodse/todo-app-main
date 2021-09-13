@@ -54,6 +54,25 @@ body {
   background-size: 100% auto;
 }
 
+body.dark {
+  background-color: var(--very-dark-blue);
+  background-image: url(images/bg-desktop-dark.jpg);
+}
+
+body.light {
+  background-color: var(--light-grayish-blue);
+  background-image: url(images/bg-desktop-light.jpg);
+}
+
+.btn-dark-light-mode-switch {
+  background-color: transparent;
+  border: none;
+}
+
+.btn-dark-light-mode-switch:hover {
+  cursor: pointer;
+}
+
 .container {
   width: 35%;
   margin: 5% auto;
@@ -77,13 +96,24 @@ body {
 
 .new-task-container {
   width: 100%;
-  background-color: var(--very-dark-grayish-blue-two); /*might need to change*/
   display: flex;
   align-items: center;
   padding: 1rem;
   border-radius: 5px;
   margin-bottom: 2rem;
   box-shadow: 0 15px 30px -13px black;
+}
+
+.new-task-text {
+  flex-grow: 1;
+}
+
+.new-task-container.dark {
+  background-color: var(--very-dark-grayish-blue-two); /*might need to change*/
+}
+
+.new-task-container.light {
+  background-color: var(--very-light-gray); /*might need to change*/
 }
 
 .check-box-border {
@@ -114,10 +144,17 @@ body {
   width: 1.2rem;
   margin-right: 1rem;
   border-radius: 50%;
-  background-color: var(--very-dark-grayish-blue-two);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.check-box.dark {
+  background-color: var(--very-dark-grayish-blue-two);
+}
+
+.check-box.light {
+  background-color: var(--very-light-gray);
 }
 
 .check-mark {
@@ -125,14 +162,35 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.check-box-border.completed .check-mark {
+  visibility: visible;
+}
+
+.check-box-border.completed .check-box {
+  background-image: var(--check-mark-background);
+}
+
+.check-box-border.completed ~ .task-container .task {
+  text-decoration: line-through 2px solid var(--dark-grayish-blue);
+  color: var(--dark-grayish-blue);
 }
 
 .new-task-text {
   font-size: 1rem;
   font-weight: bold;
-  color: var(--light-grayish-blue);
   font-family: var(--font-family);
   background-color: transparent;
+}
+
+.new-task-text.dark {
+  color: var(--light-grayish-blue);
+}
+
+.new-task-text.light {
+  color: var(--very-dark-grayish-blue);
 }
 
 .task-container {
@@ -154,19 +212,26 @@ body {
 
 .btn-remove-item:hover {
   cursor: pointer;
+  visibility: visible;
 }
 
 /* Task List */
 
 .task-list-section {
   border-radius: 5px;
-  background-color: var(--very-dark-grayish-blue-two);
   margin-bottom: 3rem;
   box-shadow: 0 20px 30px -13px black;
 }
 
+.task-list-section.dark {
+  background-color: var(--very-dark-grayish-blue-two);
+}
+
+.task-list-section.light {
+  background-color: var(--very-light-gray);
+}
+
 .task-item {
-  color: var(--light-grayish-blue);
   display: flex;
   padding: 1rem;
   font-size: 1rem;
@@ -175,6 +240,14 @@ body {
   font-weight: 700;
   border-bottom: 1px solid var(--very-dark-grayish-blue);
   flex-grow: 5;
+}
+
+.task-item.dark {
+  color: var(--light-grayish-blue);
+}
+
+.task-item.light {
+  color: var(--very-dark-grayish-blue);
 }
 
 .task-item:hover .btn-remove-item {
@@ -206,14 +279,48 @@ body {
   max-width: 50%;
 }
 
-.active-state {
+.mobile-task-states-container {
+  margin: 0 auto;
+  font-size: 0.9rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-grow: 1;
+  width: 35%;
+  padding: 1rem;
+  border-radius: 5px;
+  color: var(--dark-grayish-blue);
+  margin-bottom: 3rem;
+  display: none;
+  box-shadow: 0 15px 30px -13px black;
+}
+
+.mobile-task-states-container.dark {
+  background-color: var(--very-dark-grayish-blue-two);
+}
+
+.mobile-task-states-container.light {
+  background-color: var(--very-light-gray);
+}
+
+.current-state {
   color: var(--bright-blue);
 }
 
-.task-state:hover,
+.task-state.dark:hover,
 .clear-tasks:hover {
   cursor: pointer;
   color: var(--light-grayish-blue-hover);
+}
+
+.task-state.light:hover {
+  cursor: pointer;
+  color: var(--light-grayish-blue);
+}
+
+.hide {
+  display: none;
 }
 
 /*Footer*/
@@ -226,3 +333,24 @@ body {
 }
 
 /* Media Queries */
+@media screen and (max-width: 1300px) {
+  .container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 90%;
+  }
+  .task-states-container {
+    display: none;
+  }
+  .mobile-task-states-container {
+    display: flex;
+    width: 90%;
+  }
+  .task-list-section {
+    margin-bottom: 1rem;
+  }
+}
