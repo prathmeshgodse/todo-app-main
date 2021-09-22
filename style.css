@@ -36,7 +36,6 @@
 
 .attribution {
   font-size: 11px;
-  position: fixed;
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
@@ -297,6 +296,12 @@ body.light {
   font-size: 0.9rem;
   font-weight: 900;
   text-align: center;
+  margin-bottom: 3rem;
+}
+
+.dragging {
+  border: 2px solid var(--bright-blue);
+  opacity: 0.5;
 }
 
 /* Media Queries */

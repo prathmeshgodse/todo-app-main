@@ -15,7 +15,6 @@ const labelRemainingTaskCount = document.querySelector(".task-summary");
 const toDoItems = [];
 let theme = "dark";
 const taskItems = [...taskListContainer.querySelectorAll(".task-item")];
-const draggables = [];
 //
 //
 //Functions
@@ -57,10 +56,12 @@ function toggleCompletion() {
 
 function addNewToDoTask(e) {
   if (e.keyCode === 13) {
-    if (inputNewToDoTask.value !== "") toDoItems.push(inputNewToDoTask.value);
-    updateTaskList(inputNewToDoTask.value);
-    inputNewToDoTask.value = "";
-    console.log(toDoItems);
+    if (inputNewToDoTask.value !== "") {
+      toDoItems.push(inputNewToDoTask.value);
+      updateTaskList(inputNewToDoTask.value);
+      inputNewToDoTask.value = "";
+    }
+    // console.log(toDoItems);
   }
 }
 
@@ -85,7 +86,6 @@ function updateTaskList(taskText) {
   `;
   taskListContainer.insertAdjacentHTML("afterbegin", html);
   const newTask = document.querySelector("#task-number-" + itemNumber);
-  draggables.push(newTask);
   taskItems.push(newTask);
   themedElements.push(newTask);
   themedElements.push(newTask.querySelector("." + theme));
@@ -144,6 +144,40 @@ function removeTask() {
   updateTaskSummary();
 }
 
+function setDragging(task) {
+  if (task.classList.contains("dragging")) task.classList.remove("dragging");
+  else task.classList.add("dragging");
+}
+
+function getClosestElement(yPostion) {
+  const draggables = [
+    ...taskListContainer.querySelectorAll(".draggable:not(.dragging)"),
+  ];
+  return draggables.reduce(
+    (closest, draggable) => {
+      const draggableBox = draggable.getBoundingClientRect();
+      const offset = yPostion - draggableBox.top - draggableBox.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: draggable };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
+}
+
+function setDrop(e) {
+  e.preventDefault();
+  const closestElement = getClosestElement(e.clientY);
+  const task = document.querySelector(".dragging");
+  if (closestElement === null) {
+    taskListContainer.appendChild(task);
+  } else {
+    taskListContainer.insertBefore(task, closestElement);
+  }
+}
+
 //
 //
 //Event Listners
@@ -169,12 +203,9 @@ btnTaskStates.forEach((btnTaskState) => {
 });
 btnRemoveCompleted.addEventListener("click", removeCompletedTasks);
 updateTaskSummary();
-console.log(taskItems);
 
-taskListContainer.addEventListener("dragstart", (e) => {
-  if (e.target) {
-    if (e.target.matches(".draggable")) {
-      console.log("drag start");
-    }
-  }
-});
+taskListContainer.addEventListener("dragstart", (e) => setDragging(e.target));
+
+taskListContainer.addEventListener("dragend", (e) => setDragging(e.target));
+
+taskListContainer.addEventListener("dragover", (e) => setDrop(e));
