@@ -15,6 +15,7 @@ const labelRemainingTaskCount = document.querySelector(".task-summary");
 const toDoItems = [];
 let theme = "dark";
 const taskItems = [...taskListContainer.querySelectorAll(".task-item")];
+const draggables = [];
 //
 //
 //Functions
@@ -66,7 +67,7 @@ function addNewToDoTask(e) {
 function updateTaskList(taskText) {
   const itemNumber = toDoItems.length;
   const html = `
-  <li class="task-item ${theme}" id="task-number-${itemNumber}">
+  <li class="task-item ${theme} draggable" id="task-number-${itemNumber}" draggable="true">
               <div class="check-box-border">
                 <div class="check-box ${theme}">
                   <img class="check-mark" src="images/icon-check.svg" alt="" />
@@ -84,6 +85,7 @@ function updateTaskList(taskText) {
   `;
   taskListContainer.insertAdjacentHTML("afterbegin", html);
   const newTask = document.querySelector("#task-number-" + itemNumber);
+  draggables.push(newTask);
   taskItems.push(newTask);
   themedElements.push(newTask);
   themedElements.push(newTask.querySelector("." + theme));
@@ -156,6 +158,8 @@ taskListContainer.addEventListener("click", (e) => {
       console.log(e.target.parentNode);
     } else if (e.target.matches(".check-mark")) {
       toggleCompletion.call(e.target.parentNode.parentNode);
+    } else if (e.target && e.target.matches(".btn-remove-item")) {
+      removeTask.call(e.target.parentNode.parentNode);
     }
   }
 });
@@ -167,8 +171,10 @@ btnRemoveCompleted.addEventListener("click", removeCompletedTasks);
 updateTaskSummary();
 console.log(taskItems);
 
-taskListContainer.addEventListener("click", (e) => {
-  if (e.target && e.target.matches(".btn-remove-item")) {
-    removeTask.call(e.target.parentNode.parentNode);
+taskListContainer.addEventListener("dragstart", (e) => {
+  if (e.target) {
+    if (e.target.matches(".draggable")) {
+      console.log("drag start");
+    }
   }
 });

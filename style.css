@@ -36,7 +36,7 @@
 
 .attribution {
   font-size: 11px;
-  position: absolute;
+  position: fixed;
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
@@ -69,13 +69,9 @@ body.light {
   border: none;
 }
 
-.btn-dark-light-mode-switch:hover {
-  cursor: pointer;
-}
-
 .container {
   width: 35%;
-  margin: 5% auto;
+  margin: 7% auto;
 }
 
 /* heading */
@@ -122,11 +118,6 @@ body.light {
   min-width: 1.3rem;
   background-color: var(--dark-grayish-blue);
   border-radius: 50%;
-}
-
-.check-box-border:hover {
-  cursor: pointer;
-  background-image: var(--check-mark-background);
 }
 
 .new-task-check-box {
@@ -210,11 +201,6 @@ body.light {
   visibility: hidden;
 }
 
-.btn-remove-item:hover {
-  cursor: pointer;
-  visibility: visible;
-}
-
 /* Task List */
 
 .task-list-section {
@@ -248,14 +234,6 @@ body.light {
 
 .task-item.light {
   color: var(--very-dark-grayish-blue);
-}
-
-.task-item:hover .btn-remove-item {
-  visibility: visible;
-}
-
-.task:hover {
-  cursor: pointer;
 }
 
 /* Task Summary */
@@ -308,17 +286,6 @@ body.light {
   color: var(--bright-blue);
 }
 
-.task-state.dark:hover,
-.clear-tasks:hover {
-  cursor: pointer;
-  color: var(--light-grayish-blue-hover);
-}
-
-.task-state.light:hover {
-  cursor: pointer;
-  color: var(--light-grayish-blue);
-}
-
 .hide {
   display: none;
 }
@@ -352,5 +319,39 @@ body.light {
   }
   .task-list-section {
     margin-bottom: 1rem;
+  }
+  body {
+    background-size: auto 25vh;
+  }
+}
+
+@media (hover: hover) {
+  .btn-dark-light-mode-switch:hover {
+    cursor: pointer;
+  }
+  .check-box-border:hover {
+    cursor: pointer;
+    background-image: var(--check-mark-background);
+  }
+  .task-state.dark:hover,
+  .clear-tasks:hover {
+    cursor: pointer;
+    color: var(--light-grayish-blue-hover);
+  }
+
+  .task-state.light:hover {
+    cursor: pointer;
+    color: var(--light-grayish-blue);
+  }
+  .task-item:hover .btn-remove-item {
+    visibility: visible;
+  }
+
+  .task:hover {
+    cursor: pointer;
+  }
+  .btn-remove-item:hover {
+    cursor: pointer;
+    visibility: visible;
   }
 }
